@@ -1,0 +1,420 @@
+@import "bootstrap";
+
+/* ===============Página=============== */
+body {
+  margin: 0;
+  padding: 16px 16px 76px; // hueco abajo para el botón de modo oscuro
+  box-sizing: border-box;
+}
+
+header,main,footer {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Buscador */
+header input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+/* Botones */
+header section {
+  display: flex;
+  gap: 8px;
+}
+
+header button {
+  padding: 8px 14px;
+  font-size: 16px;
+}
+
+/* Lista */
+#emisora ul {
+  list-style: none;
+  padding: 0;
+  gap: 12px;
+}
+
+#emisora li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0;
+  border: 2px solid;
+  border-radius: 5px;
+  border-color: black;
+}
+
+/* Enlaces: sin subrayado ni azul */
+#emisora a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Logos del mismo tamaño */
+#emisora img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background: white;
+  border-radius: 8px;
+}
+
+.miWeb {
+  background-color: white;
+
+  @media(min-width: 50rem){
+    background-image: none;
+    background-size: auto;
+  }
+}
+
+
+/* LOGIN · World Wide FM  (todo dentro de body.login) */
+$morado: #4F46E5;
+$oscuro: #3C3C43;
+$gris: #F3F4F6;
+$desktop: 62rem; // a partir de aquí aparece el panel izquierdo
+
+/* ---------- MÓVIL (por defecto) ---------- */
+body.login {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 40px 24px 80px; // hueco abajo para el botón de modo oscuro
+  font-size: 15px;
+  line-height: 22px;
+  font-family: "Figtree", sans-serif;
+
+  aside { display: none; }
+
+  header, main, footer { width: 100%; }
+
+  h1, h2, p { margin: 0; }
+
+  input, button { border-radius: 16px; }
+
+  a {
+    color: $morado;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  :focus-visible {
+    outline: 2px solid $morado;
+    outline-offset: 2px;
+  }
+
+  header {
+    margin-bottom: 32px;
+    text-align: center;
+
+    img {
+      display: block;
+      width: 100px;
+      margin: 0 auto 12px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      line-height: 44px;
+      font-weight: 800;
+    }
+  }
+
+  /* Formulario + botones sociales en una rejilla de 2 columnas */
+  .miWeb {
+    display: grid;
+    grid-template-columns: 1fr 1fr; // Google y Apple, uno al lado del otro
+    gap: 32px 12px;
+
+    > :not(button) { grid-column: 1 / -1; }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .campo {
+      position: relative; // para colocar el ojo encima del input
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: #4B5563;
+    }
+
+    input {
+      height: 56px;
+      padding: 0 16px;
+      margin-bottom: 12px;
+      background: #F9FAFB;
+      border: 1px solid $gris;
+
+      &:hover { border-color: #9CA3AF; }
+
+      &:focus {
+        outline: none;
+        border-color: $morado;
+        box-shadow: 0 0 0 3px rgba($morado, .2);
+      }
+    }
+
+    #contrasena {
+      padding-right: 48px; // hueco para el ojo
+    }
+
+    // Ojo de mostrar / ocultar contraseña
+    .campo button {
+      position: absolute;
+      top: 28px; // 20px de texto + 8px de separación
+      right: 0;
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 56px;
+      padding: 0;
+      font-size: 20px;
+      color: #6B7280;
+      background: none;
+      border: 0;
+
+      &:hover { color: $morado; }
+    }
+
+    a {
+      align-self: flex-end;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    > button {
+      height: 56px;
+      font-weight: 700;
+      color: white;
+      background: $morado;
+      border: 0;
+
+      &:hover {
+        background: #4338CA;
+        box-shadow: 0 8px 16px rgba($morado, .3);
+      }
+    }
+  }
+
+  /* "O CONTINÚA CON" con una línea a cada lado */
+  .miWeb > p:first-of-type {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #9CA3AF;
+
+    &::before, &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: $gris;
+    }
+  }
+
+  /* Google / Apple */
+  .miWeb > button {
+    height: 52px;
+    background: white;
+    border: 1px solid $gris;
+
+    &:hover {
+      background: #EEF2FF;
+      border-color: $morado;
+    }
+  }
+
+  /* "¿Nuevo en World Wide FM? Crea una cuenta" */
+  .miWeb > p:last-of-type {
+    text-align: center;
+
+    a { font-weight: 900; }
+  }
+
+  footer {
+    margin-top: auto;
+    padding-top: 32px;
+    font-size: 12px;
+    text-align: center;
+    color: #9CA3AF;
+  }
+}
+
+/* ---------- ESCRITORIO: dos columnas ---------- */
+@media (min-width: $desktop) {
+  body.login {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto auto 1fr; // centra header y main en vertical
+    position: relative;
+    padding: 0;
+
+    aside {
+      display: grid;
+      align-content: center;
+      gap: 12px;
+      grid-column: 1;
+      grid-row: 1 / -1;
+      padding: 64px;
+      color: white;
+      background: linear-gradient(rgba($oscuro, .55), rgba($oscuro, .55)), url("../img/tierra.png") 30% center / cover;
+
+      img {
+        width: 36px;
+        border-radius: 8px;
+      }
+
+      strong { text-transform: uppercase; }
+
+      h2 {
+        font-size: 40px;
+        line-height: 50px;
+        font-weight: 800;
+      }
+
+      p { color: #D1D5DB; }
+    }
+
+    header, main {
+      grid-column: 2;
+      width: 90%;
+    }
+
+    header { grid-row: 2; }
+
+    main { grid-row: 3; }
+
+    /* El footer va a la esquina inferior del panel izquierdo */
+    footer {
+      position: absolute;
+      left: 64px;
+      bottom: 64px;
+      width: auto;
+      padding: 0;
+      text-align: left;
+    }
+  }
+}
+
+
+/* BOTÓN MODO OSCURO · esquina inferior derecha */
+#theme-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1030;
+  height: 44px;
+  padding: 0 20px;
+  font: 700 14px/1 "Figtree", sans-serif;
+  color: #FFFFFF;             
+  background: #4F46E5;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(#111827, .25);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: #4338CA;
+    box-shadow: 0 8px 16px rgba(#4F46E5, .35);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #111827;
+    outline-offset: 3px;
+  }
+}
+
+
+/* MODO OSCURO · se activa con data-bs-theme="dark" en <html>*/
+$gris-900: #111827;
+$gris-400: #9CA3AF;
+$gris-50: #F9FAFB;
+$gris-sec: #4B5563;
+$morado-claro: #818CF8; 
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #{$gris-900};
+  --bs-body-bg-rgb: 17, 24, 39;
+  --bs-body-color: #{$gris-50};
+  --bs-body-color-rgb: 249, 250, 251;
+  --bs-secondary-color: #{$gris-400};
+  --bs-border-color: #{$gris-sec};
+  --bs-link-color: #{$morado-claro};
+  --bs-link-hover-color: #{$morado-claro};
+
+  .miWeb { background-color: $gris-900; }
+
+  #emisora li { border-color: $gris-sec; }
+
+  #theme-toggle:focus-visible { outline-color: $gris-50; }
+
+  body.login {
+    a { color: $morado-claro; }
+
+    :focus-visible { outline-color: $morado-claro; }
+
+    form {
+      .campo { color: $gris-400; }
+
+      input {
+        color: $gris-50;
+        background: $gris-900;
+        border-color: $gris-sec;
+
+        &::placeholder { color: $gris-400; opacity: 1; }
+
+        &:hover { border-color: $gris-400; }
+
+        &:focus {
+          border-color: $morado-claro;
+          box-shadow: 0 0 0 3px rgba($morado-claro, .3);
+        }
+      }
+
+      .campo button {
+        color: $gris-400;
+
+        &:hover { color: $morado-claro; }
+      }
+    }
+
+    /* "O CONTINÚA CON" */
+    .miWeb > p:first-of-type {
+      color: $gris-400;
+
+      &::before, &::after { background: $gris-sec; }
+    }
+
+    /* Google / Apple */
+    .miWeb > button {
+      color: $gris-50;
+      background: $gris-900;
+      border-color: $gris-sec;
+
+      &:hover {
+        background: rgba(#4F46E5, .2);
+        border-color: $morado-claro;
+      }
+    }
+
+    footer { color: $gris-400; }
+  }
+}
